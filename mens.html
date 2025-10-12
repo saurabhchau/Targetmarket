@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Men's Products - Everyday Shopping Cheap</title>
+<style>
+/* Reset & Body */
+body {font-family: 'Poppins', sans-serif; margin: 0; background: #f8f8f8; color: #333;}
+
+/* Header/Nav like About Us page */
+header {background-color: #333;}
+.logo {display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: bold; color: #ff9800;}
+.logo-img {height: 40px; width: auto;}
+.navbar {display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 10px 20px;}
+.navbar .logo {font-size: 1.8rem; font-weight: bold; color: #ff9800;}
+.navbar nav a {color: white; text-decoration: none; margin-left: 20px; font-size: 1rem;}
+.navbar nav a:hover {text-decoration: underline;}
+
+/* Page Title/Subheader */
+.page-title {text-align: center; padding: 40px 20px 20px 20px; background-color: #ffe6e0; color: #ff6f61; font-size: 2rem; font-weight: bold;}
+
+/* Main Content */
+main {max-width: 1200px; margin: 30px auto; padding: 0 20px;}
+.products {display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;}
+.product-card {background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align:center; padding:15px; position:relative;}
+.product-card img {width:100%; height:200px; object-fit:cover;}
+.buy-btn {padding:10px; border:none; border-radius:6px; background:#ff6f61; color:white; text-decoration:none; display:inline-block; margin-top:10px;}
+.buy-btn:hover {background:#ff3c00;}
+.discount-tag {position:absolute; top:0; left:0; background-color:#ff3c00; color:white; padding:5px 10px; font-size:14px; font-weight:bold; border-radius:0 0 10px 0;}
+
+/* Footer */
+footer {background-color: #333; color: white; text-align: center; padding: 15px 0; margin-top: 50px;}
+footer a {color: white; text-decoration: none; margin: 0 10px;}
+footer a:hover {text-decoration: underline;}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {flex-direction: column;}
+    .navbar nav {margin-top: 10px;}
+    .navbar nav a {margin: 10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="navbar">
+        <div class="logo">
+        <img src="images/logo.png" alt="Everyday Shopping Cheap Logo" class="logo-img">
+        Target market
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="shop.html">Shop</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Page Title/Subheader -->
+<div class="page-title">Men's Products</div>
+
+<!-- Main Content -->
+<main>
+<div class="products" id="productGrid"></div>
+</main>
+
+<!-- Footer -->
+<footer>
+<p>© 2025 Target market. All Rights Reserved.</p>
+<p><a href="index.html">Home</a> | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
+</footer>
+
+<!-- Product Script -->
+<script>
+const products = [];
+for(let i=1;i<=50;i++){
+    products.push({
+        id:i,
+        title:`Men's Casual Shirt ${i}`,
+        price:`₹${499 + (i*10)}`,
+        cat:'mens',
+        img:`https://source.unsplash.com/400x400/?mens,shirt,${i}`,
+        affiliate:'#',
+        discount:`-${10 + (i%5)*5}%`
+    });
+}
+
+const grid = document.getElementById('productGrid');
+function render(list){
+    grid.innerHTML='';
+    list.forEach(p=>{
+        grid.innerHTML+=`<div class='product-card'>
+            <div class='discount-tag'>${p.discount}</div>
+            <img src='${p.img}' alt='${p.title}'>
+            <div class='product-info'>
+                <h3>${p.title}</h3>
+                <p>Price: ${p.price}</p>
+                <a href='${p.affiliate}' class='buy-btn' target='_blank'>Buy Now</a>
+            </div>
+        </div>`;
+    });
+}
+
+render(products);
+</script>
+
+</body>
+</html>

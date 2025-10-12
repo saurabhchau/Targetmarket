@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop - Everyday Shopping Cheap</title>
+<style>
+/* Reset & Body */
+body {font-family: 'Poppins', sans-serif; margin:0; background:#f8f8f8; color:#333;}
+
+/* Header/Nav */
+header {background-color:#333;}
+.logo {display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: bold; color: #ff9800;}
+.logo-img {height: 40px; width: auto;}
+.navbar {display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:10px 20px;}
+.navbar .logo {font-size:1.8rem; font-weight:bold; color:#ff9800;}
+.navbar nav a {color:white; text-decoration:none; margin-left:20px; font-size:1rem;}
+.navbar nav a:hover {text-decoration:underline;}
+
+/* Page Title */
+.page-title {text-align:center; padding:40px 20px 20px 20px; background-color:#ffe6e0; color:#ff6f61; font-size:2rem; font-weight:bold;}
+
+/* Main Content */
+main {max-width:1200px; margin:30px auto; padding:0 20px;}
+.categories {display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:30px; margin-top:30px;}
+.category-card {background:white; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); overflow:hidden; text-align:center; transition:transform 0.3s;}
+.category-card:hover {transform:scale(1.05);}
+.category-card img {width:100%; height:200px; object-fit:cover;}
+.category-card h3 {margin:15px 0; color:#ff6f61;}
+.category-card a {display:inline-block; margin-bottom:15px; padding:10px 20px; background:#ff6f61; color:white; text-decoration:none; border-radius:6px;}
+.category-card a:hover {background:#ff3c00;}
+
+/* Footer */
+footer {background-color:#333; color:white; text-align:center; padding:15px 0; margin-top:50px;}
+footer a {color:white; text-decoration:none; margin:0 10px;}
+footer a:hover {text-decoration:underline;}
+
+/* Responsive */
+@media (max-width:768px){.navbar{flex-direction:column;}.navbar nav{margin-top:10px;}.navbar nav a{margin:10px;}}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="navbar">
+        <div class="logo">
+        <img src="images/logo.png" alt="Everyday Shopping Cheap Logo" class="logo-img">
+        Target market
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="shop.html">Shop</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Page Title -->
+<div class="page-title">Shop Categories</div>
+
+<!-- Main Content -->
+<main>
+<div class="categories">
+
+    <!-- Men -->
+    <div class="category-card">
+        <img src="images/mens (1).png" alt="Men's Products">
+        <h3>Men's Products</h3>
+        <a href="mens.html">Shop Now</a>
+    </div>
+
+    <!-- Women -->
+    <div class="category-card">
+        <img src="images/womens.png" alt="Women's Products">
+        <h3>Women's Products</h3>
+        <a href="womens.html">Shop Now</a>
+    </div>
+
+    <!-- Grocery -->
+    <div class="category-card">
+        <img src="images/grocery.png" alt="Grocery Products">
+        <h3>Grocery</h3>
+        <a href="grocery.html">Shop Now</a>
+    </div>
+
+    <!-- Child -->
+    <div class="category-card">
+        <img src="images/child.png" alt="Child Products">
+        <h3>Child Products</h3>
+        <a href="child.html">Shop Now</a>
+    </div>
+
+    <!-- Electronics -->
+    <div class="category-card">
+        <img src="images/electronics.png" alt="Electronics">
+        <h3>Electronics</h3>
+        <a href="electronics.html">Shop Now</a>
+    </div>
+
+    <!-- Laptop -->
+    <div class="category-card">
+        <img src="images/laptop.png" alt="Laptop">
+        <h3>Laptop</h3>
+        <a href="laptop.html">Shop Now</a>
+    </div>
+
+</div>
+</main>
+
+<!-- Footer -->
+<footer>
+<p>© 2025 Target market. All Rights Reserved.</p>
+<p><a href="index.html">Home</a> | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
+</footer>
+
+</body>
+</html>
