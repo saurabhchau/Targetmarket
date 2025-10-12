@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Men's Products - Everyday Shopping Cheap</title>
+<title>Jewellery Products - Everyday Shopping Cheap</title>
 <style>
 /* Reset & Body */
 body {font-family: 'Poppins', sans-serif; margin: 0; background: #f8f8f8; color: #333;}
 
-/* Header/Nav like About Us page */
+/* Header/Nav */
 header {background-color: #333;}
 .logo {display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: bold; color: #ff9800;}
 .logo-img {height: 40px; width: auto;}
@@ -18,16 +18,16 @@ header {background-color: #333;}
 .navbar nav a:hover {text-decoration: underline;}
 
 /* Page Title/Subheader */
-.page-title {text-align: center; padding: 40px 20px 20px 20px; background-color: #ffe6e0; color: #ff6f61; font-size: 2rem; font-weight: bold;}
+.page-title {text-align: center; padding: 40px 20px 20px 20px; background-color: #fff3e0; color: #ff6f00; font-size: 2rem; font-weight: bold;}
 
 /* Main Content */
 main {max-width: 1200px; margin: 30px auto; padding: 0 20px;}
 .products {display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;}
 .product-card {background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align:center; padding:15px; position:relative;}
 .product-card img {width:100%; height:200px; object-fit:cover;}
-.buy-btn {padding:10px; border:none; border-radius:6px; background:#ff6f61; color:white; text-decoration:none; display:inline-block; margin-top:10px;}
-.buy-btn:hover {background:#ff3c00;}
-.discount-tag {position:absolute; top:0; left:0; background-color:#ff3c00; color:white; padding:5px 10px; font-size:14px; font-weight:bold; border-radius:0 0 10px 0;}
+.buy-btn {padding:10px; border:none; border-radius:6px; background:#ff6f00; color:white; text-decoration:none; display:inline-block; margin-top:10px;}
+.buy-btn:hover {background:#e65100;}
+.discount-tag {position:absolute; top:0; left:0; background-color:#e65100; color:white; padding:5px 10px; font-size:14px; font-weight:bold; border-radius:0 0 10px 0;}
 .product-info p {margin: 5px 0;}
 
 /* Footer */
@@ -62,7 +62,7 @@ footer a:hover {text-decoration: underline;}
 </header>
 
 <!-- Page Title/Subheader -->
-<div class="page-title">Men's Products</div>
+<div class="page-title">Jewellery Products</div>
 
 <!-- Main Content -->
 <main>
@@ -79,17 +79,17 @@ footer a:hover {text-decoration: underline;}
 <script>
 const products = [];
 
-// You can replace these auto-generated details with Meesho / Amazon product data later
+// Example: 50 Jewellery products (replace with Meesho/Amazon affiliate details)
 for(let i=1; i<=50; i++){
     products.push({
         id: i,
-        title: `Men's Casual Shirt ${i}`,
-        description: `Comfortable cotton casual shirt ideal for everyday wear. Perfect fit and stylish look.`,
-        rating: `⭐ ${(3.8 + (i % 5) * 0.2).toFixed(1)}/5 (${200 + i*10} reviews)`,
-        price: `₹${499 + (i * 10)}`,
-        discount: `-${10 + (i % 5) * 5}%`,
-        img: `https://source.unsplash.com/400x400/?mens,shirt,${i}`,
-        affiliate: "#" // 👉 Replace # with your Meesho or Amazon affiliate link
+        title: `Jewellery Item ${i}`,
+        description: `Elegant and stylish jewellery piece to enhance your outfit.`,
+        rating: `⭐ ${(3.5 + (i % 5) * 0.3).toFixed(1)}/5 (${50 + i*5} reviews)`,
+        price: `₹${499 + i*50}`,
+        discount: `-${5 + (i % 5) * 5}%`,
+        img: `https://source.unsplash.com/400x400/?jewellery,${i}`,
+        affiliate: "#" // 👉 Replace # with Meesho/Amazon affiliate link
     });
 }
 
