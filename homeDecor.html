@@ -25,8 +25,8 @@ main {max-width: 1200px; margin: 30px auto; padding: 0 20px;}
 .products {display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;}
 .product-card {background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align:center; padding:15px; position:relative;}
 .product-card img {width:100%; height:200px; object-fit:cover;}
-.buy-btn {padding:10px; border:none; border-radius:6px; background:#00796b; color:white; text-decoration:none; display:inline-block; margin-top:10px;}
-.buy-btn:hover {background:#004d40;}
+.buy-btn, .cart-btn {padding:10px; border:none; border-radius:6px; background:#00796b; color:white; text-decoration:none; display:inline-block; margin-top:10px; cursor:pointer;}
+.buy-btn:hover, .cart-btn:hover {background:#004d40;}
 .discount-tag {position:absolute; top:0; left:0; background-color:#004d40; color:white; padding:5px 10px; font-size:14px; font-weight:bold; border-radius:0 0 10px 0;}
 .product-info p {margin: 5px 0;}
 
@@ -34,6 +34,27 @@ main {max-width: 1200px; margin: 30px auto; padding: 0 20px;}
 footer {background-color: #333; color: white; text-align: center; padding: 15px 0; margin-top: 50px;}
 footer a {color: white; text-decoration: none; margin: 0 10px;}
 footer a:hover {text-decoration: underline;}
+
+/* Cart Notification */
+#cart-notice {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #00796b;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  display: none;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+  animation: fadeInOut 2s ease-in-out;
+}
+@keyframes fadeInOut {
+  0% {opacity: 0;}
+  20% {opacity: 1;}
+  80% {opacity: 1;}
+  100% {opacity: 0;}
+}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -69,6 +90,9 @@ footer a:hover {text-decoration: underline;}
 <div class="products" id="productGrid"></div>
 </main>
 
+<!-- Cart Notice -->
+<div id="cart-notice">🛒 Added to Cart!</div>
+
 <!-- Footer -->
 <footer>
 <p>© 2025 Target market. All Rights Reserved.</p>
@@ -93,7 +117,7 @@ for(let i=1; i<=50; i++){
     });
 }
 
-// Function to display products
+// Render products
 const grid = document.getElementById('productGrid');
 function render(list){
     grid.innerHTML = '';
@@ -107,13 +131,25 @@ function render(list){
                 <p>${p.description}</p>
                 <p>${p.rating}</p>
                 <p>${p.price}</p>
+                <button class='cart-btn' onclick='addToCart(${p.id})'>🛒 Add to Cart</button>
                 <a href='${p.affiliate}' class='buy-btn' target='_blank'>Buy Now</a>
             </div>
         </div>`;
     });
 }
-
 render(products);
+
+// Add to Cart
+function addToCart(id){
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let product = products.find(p => p.id === id);
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    let notice = document.getElementById('cart-notice');
+    notice.style.display = 'block';
+    setTimeout(()=> notice.style.display = 'none', 2000);
+}
 </script>
 
 </body>

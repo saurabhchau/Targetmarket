@@ -5,30 +5,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Child Products - Everyday Shopping Cheap</title>
 <style>
-body {font-family: 'Poppins', sans-serif; margin:0; background:#f8f8f8; color:#333;}
-header {background-color:#333;}
+/* Reset & Body */
+body {font-family: 'Poppins', sans-serif; margin: 0; background: #f8f8f8; color: #333;}
+
+/* Header/Nav */
+header {background-color: #333;}
 .logo {display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: bold; color: #ff9800;}
 .logo-img {height: 40px; width: auto;}
-.navbar {display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:10px 20px;}
-.navbar .logo {font-size:1.8rem; font-weight:bold; color:#ff9800;}
-.navbar nav a {color:white; text-decoration:none; margin-left:20px; font-size:1rem;}
-.navbar nav a:hover {text-decoration:underline;}
-.page-title {text-align:center; padding:40px 20px 20px 20px; background-color:#ffe6e0; color:#ff6f61; font-size:2rem; font-weight:bold;}
-main {max-width:1200px; margin:30px auto; padding:0 20px;}
+.navbar {display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 10px 20px;}
+.navbar .logo {font-size: 1.8rem; font-weight: bold; color: #ff9800;}
+.navbar nav a {color: white; text-decoration: none; margin-left: 20px; font-size: 1rem;}
+.navbar nav a:hover {text-decoration: underline;}
+
+/* Page Title/Subheader */
+.page-title {text-align: center; padding: 40px 20px 20px 20px; background-color: #fff3cd; color: #ff9800; font-size: 2rem; font-weight: bold;}
+
+/* Main Content */
+main {max-width: 1200px; margin: 30px auto; padding: 0 20px;}
 .products {display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;}
 .product-card {background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align:center; padding:15px; position:relative;}
 .product-card img {width:100%; height:200px; object-fit:cover;}
-.buy-btn {padding:10px; border:none; border-radius:6px; background:#ff6f61; color:white; display:inline-block; margin-top:10px; text-decoration:none;}
-.buy-btn:hover {background:#ff3c00;}
-.discount-tag {position:absolute; top:0; left:0; background-color:#ff3c00; color:white; padding:5px 10px; font-size:14px; font-weight:bold; border-radius:0 0 10px 0;}
-footer {background-color:#333; color:white; text-align:center; padding:15px 0; margin-top:50px;}
-footer a {color:white; text-decoration:none; margin:0 10px;}
-footer a:hover {text-decoration:underline;}
-@media (max-width:768px){.navbar{flex-direction:column;}.navbar nav{margin-top:10px;}.navbar nav a{margin:10px;}}
+.buy-btn, .cart-btn {padding:10px; border:none; border-radius:6px; background:#ff9800; color:white; text-decoration:none; display:inline-block; margin-top:10px; cursor:pointer;}
+.buy-btn:hover, .cart-btn:hover {background:#e67e00;}
+.discount-tag {position:absolute; top:0; left:0; background-color:#e67e00; color:white; padding:5px 10px; font-size:14px; font-weight:bold; border-radius:0 0 10px 0;}
+.product-info p {margin: 5px 0;}
+
+/* Footer */
+footer {background-color: #333; color: white; text-align: center; padding: 15px 0; margin-top: 50px;}
+footer a {color: white; text-decoration: none; margin: 0 10px;}
+footer a:hover {text-decoration: underline;}
+
+/* Cart Notification */
+#cart-notice {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #ff9800;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  display: none;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+  animation: fadeInOut 2s ease-in-out;
+}
+@keyframes fadeInOut {
+  0% {opacity: 0;}
+  20% {opacity: 1;}
+  80% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {flex-direction: column;}
+    .navbar nav {margin-top: 10px;}
+    .navbar nav a {margin: 10px;}
+}
 </style>
 </head>
 <body>
 
+<!-- Header -->
 <header>
     <div class="navbar">
         <div class="logo">
@@ -44,42 +82,74 @@ footer a:hover {text-decoration:underline;}
     </div>
 </header>
 
+<!-- Page Title/Subheader -->
 <div class="page-title">Child Products</div>
 
+<!-- Main Content -->
 <main>
 <div class="products" id="productGrid"></div>
 </main>
 
+<!-- Cart Notice -->
+<div id="cart-notice">🛒 Added to Cart!</div>
+
+<!-- Footer -->
 <footer>
 <p>© 2025 Target market. All Rights Reserved.</p>
 <p><a href="index.html">Home</a> | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a></p>
 </footer>
 
+<!-- Product Script -->
 <script>
 const products = [];
-for(let i=1;i<=50;i++){
+
+// Example: 50 child products (toys, clothes, accessories)
+for(let i=1; i<=50; i++){
     products.push({
-        id:i,
-        title:`Child Toy/Clothes ${i}`,
-        price:`₹${199 + i*5}`,
-        cat:'child',
-        img:`https://source.unsplash.com/400x400/?kids,toys,${i}`,
-        affiliate:'#',
-        discount:`-${5 + (i%5)*5}%`
+        id: i,
+        title: `Child Toy/Clothes ${i}`,
+        description: `Fun and safe toy or clothing item for kids, designed with love.`,
+        rating: `⭐ ${(3.5 + (i % 5) * 0.3).toFixed(1)}/5 (${80 + i*3} reviews)`,
+        price: `₹${199 + i*5}`,
+        discount: `-${5 + (i % 5) * 5}%`,
+        img: `https://source.unsplash.com/400x400/?kids,toys,${i}`,
+        affiliate: "#" // 👉 Replace # with your Meesho or Amazon affiliate link
     });
 }
+
+// Render Products
 const grid = document.getElementById('productGrid');
-function render(list){grid.innerHTML=''; list.forEach(p=>{
-    grid.innerHTML+=`<div class='product-card'>
-        <div class='discount-tag'>${p.discount}</div>
-        <img src='${p.img}' alt='${p.title}'>
-        <div class='product-info'>
-            <h3>${p.title}</h3>
-            <p>Price: ${p.price}</p>
-            <a href='${p.affiliate}' class='buy-btn' target='_blank'>Buy Now</a>
-        </div>
-    </div>`;});}
+function render(list){
+    grid.innerHTML = '';
+    list.forEach(p => {
+        grid.innerHTML += `
+        <div class='product-card'>
+            <div class='discount-tag'>${p.discount}</div>
+            <img src='${p.img}' alt='${p.title}'>
+            <div class='product-info'>
+                <h3>${p.title}</h3>
+                <p>${p.description}</p>
+                <p>${p.rating}</p>
+                <p>${p.price}</p>
+                <button class='cart-btn' onclick='addToCart(${p.id})'>🛒 Add to Cart</button>
+                <a href='${p.affiliate}' class='buy-btn' target='_blank'>Buy Now</a>
+            </div>
+        </div>`;
+    });
+}
 render(products);
+
+// Add to Cart
+function addToCart(id){
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let product = products.find(p => p.id === id);
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    let notice = document.getElementById('cart-notice');
+    notice.style.display = 'block';
+    setTimeout(()=> notice.style.display = 'none', 2000);
+}
 </script>
 
 </body>

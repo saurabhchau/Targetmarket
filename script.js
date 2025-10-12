@@ -41,3 +41,72 @@ function render(list) {
 }
 
 render(products);
+
+// Search Function
+function searchProducts() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const filtered = products.filter(p => p.title.toLowerCase().includes(input));
+  render(filtered);
+}
+
+// Cart Logic
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Ensure numeric price for sum calculation
+cart.forEach(item => {
+    if(!item.priceNum) {
+        // If price has ₹ or is string, convert to number
+        item.priceNum = parseFloat(item.price.toString().replace(/[^0-9.]/g, '')) || 0;
+    }
+});
+
+function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    if(!product.priceNum) {
+        product.priceNum = parseFloat(product.price.toString().replace(/[^0-9.]/g, '')) || 0;
+    }
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+}
+
+function updateCartCount() {
+    document.getElementById('cart-count').innerText = cart.length;
+}
+
+function toggleCart() {
+    const popup = document.getElementById('cartPopup');
+    popup.classList.toggle('active');
+    showCart();
+}
+
+function showCart() {
+    const list = document.getElementById('cartItems');
+    const total = document.getElementById('cartTotal');
+    list.innerHTML = '';
+    let sum = 0;
+    cart.forEach((item, i) => {
+        list.innerHTML += `<li>${item.title} - ₹${item.priceNum} <button onclick="removeItem(${i})">❌</button></li>`;
+        sum += item.priceNum;
+    });
+    total.innerText = `Total: ₹${sum}`;
+}
+
+function removeItem(i) {
+    cart.splice(i, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    showCart();
+}
+
+function clearCart() {
+    cart = [];
+    localStorage.removeItem('cart');
+    updateCartCount();
+    showCart();
+}
+
+// Initialize
+updateCartCount();
+showCart();
+

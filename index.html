@@ -29,6 +29,11 @@
       <input type="text" placeholder="Search products..." />
       <button>Search</button>
     </div>
+
+    <!-- Cart Icon -->
+    <div class="cart-icon" onclick="toggleCart()">
+      🛒 <span id="cart-count">0</span>
+    </div>
   </header>
 
   <section class="hero" id="home">
@@ -50,6 +55,14 @@
   </div>
 
   <section class="products" id="productGrid"></section>
+  
+   <!-- Cart Popup -->
+  <div id="cartPopup" class="cart-popup">
+    <h2>Your Cart 🛍️</h2>
+    <ul id="cartItems"></ul>
+    <p id="cartTotal"></p>
+    <button onclick="clearCart()" class="clear-btn">Clear Cart</button>
+  </div>
 
   <footer id="about">
     <p>© 2025 Target Market. All Rights Reserved.</p>
