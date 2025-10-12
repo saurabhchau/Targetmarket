@@ -92,6 +92,17 @@ function showCart() {
     total.innerText = `Total: ₹${sum}`;
 }
 
+// Toggle mobile menu
+    function toggleMenu() {
+      const nav = document.getElementById('nav-menu');
+      nav.classList.toggle('active');
+    }
+
+    // Toggle cart popup
+    function toggleCart() {
+      const popup = document.getElementById('cartPopup');
+      popup.classList.toggle('active');
+    }
 function removeItem(i) {
     cart.splice(i, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
