@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Target Market</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -20,6 +21,8 @@
       <a href="about.html">About Us</a>
       <a href="contact.html">Contact</a>
       <a href="shop.html">Shop</a>
+      <a href="login.html" class="login-btn">Login</a>
+      <a href="signup.html" class="signup-btn">Signup</a>
     </nav>
 
     <!-- Mobile Menu Icon -->
@@ -34,13 +37,28 @@
     <div class="cart-icon" onclick="toggleCart()">
       🛒 <span id="cart-count">0</span>
     </div>
+
+    <div id="user-info" style="display: flex; align-items: center; gap: 8px;">
+    <img id="user-avatar" src="" alt="Profile" style="width:35px; height:35px; border-radius:50%; display:none;">
+    <span id="user-name" style="color:white;"></span>
+    <button onclick="logout()" style="background:#ff4c4c; color:white; border:none; border-radius:5px; padding:5px 10px;">Logout</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="auth.js"></script>
+    <script>
+    // Load user info when page opens
+    document.addEventListener('DOMContentLoaded', showUserProfile);
+    </script>
+
   </header>
 
   <section class="hero" id="home">
     <h1>Welcome to Target Market 🛍️</h1>
     <p>Find the best discounts on clothes, gadgets, electronics & more!</p>
     <span class="offer-banner">🔥 Big Sale! Up to 60% OFF on all products 🔥</span>
-  </section>
+  </section> 
+  
+  <section class="products" id="productGrid"></section>
 
   <div class="category-buttons">
     <button onclick="window.location.href='mens.html'">Men's</button>

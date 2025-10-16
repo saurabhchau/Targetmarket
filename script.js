@@ -121,3 +121,33 @@ function clearCart() {
 updateCartCount();
 showCart();
 
+// Load and display products from CSV
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("Demo_CSV.csv")
+    .then((response) => response.text())
+    .then((data) => {
+      const rows = data.split("\n").slice(1); // Skip header
+      const productGrid = document.getElementById("productGrid");
+
+      rows.forEach((row) => {
+        const columns = row.split(",");
+        if (columns.length < 3) return; // Skip invalid rows
+
+        const [name, price, image, category, description] = columns;
+
+        const productCard = document.createElement("div");
+        productCard.className = "product-card";
+        productCard.innerHTML = `
+          <img src="${image.trim()}" alt="${name.trim()}">
+          <h3>${name.trim()}</h3>
+          <p>${description?.trim() || ""}</p>
+          <p><strong>₹${price.trim()}</strong></p>
+          <button onclick="addToCart('${name.trim()}', ${price.trim()}, '${image.trim()}')">Add to Cart</button>
+        `;
+        productGrid.appendChild(productCard);
+      });
+    })
+    .catch((err) => console.error("Error loading CSV:", err));
+});
+
+
